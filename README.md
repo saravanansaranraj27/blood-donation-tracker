@@ -56,6 +56,21 @@ To create a production build:
 npm run build
 ```
 
+### Deploy to GitHub Pages
+
+Install `gh-pages` as a dev dependency (only needed once):
+
+```sh
+npm install --save-dev gh-pages
+```
+
+Then build and deploy:
+
+```sh
+npm run build
+npm run deploy
+```
+
 ## Using the App
 
 1. **Dashboard:** View the hero section for a quick snapshot of total donations and current health status.
@@ -95,9 +110,11 @@ index.html        # HTML shell with Google Fonts integration
 ## Development Commands
 
 ```sh
+npm install --save-dev gh-pages   # One-time setup for GitHub Pages deployment
 npm run dev       # Start the development server
 npm run build     # Create a production build
 npm run preview   # Preview the production build locally
+npm run deploy    # Publish dist/ with gh-pages
 ```
 
 ## Limitations
