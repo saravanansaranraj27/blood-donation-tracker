@@ -7,6 +7,8 @@
 [![Recharts](https://img.shields.io/badge/Recharts-3-0088cc?logo=recharts&logoColor=white)](https://recharts.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0f766e.svg)](#license)
 
+### 🌐 [Live Demo](https://saravanansaranraj27.github.io/blood-donation-tracker)
+
 ## Overview
 
 Blood Donation Tracker is a responsive React application designed to help voluntary donors monitor their health metrics over time. It transforms raw donation records into actionable insights, including haemoglobin stability analysis, donation frequency patterns, and predictive scheduling for future donations. The app features a sophisticated dark/light theme system, custom SVG animations, and optimized data visualization.
