@@ -26,6 +26,9 @@ import {
   Clock,
   AlertCircle,
   Linkedin,
+  Menu,
+  X,
+  ArrowUp,
 } from "lucide-react";
 
 const DONOR = {
@@ -274,8 +277,61 @@ const YearlyChart = React.memo(({ data }) => {
   );
 });
 
+const NAV_LINKS = [
+  { id: "summary", label: "Summary" },
+  { id: "trend", label: "Trend" },
+  { id: "analytics", label: "Analytics" },
+  { id: "rhythm", label: "Rhythm" },
+  { id: "record", label: "Record" },
+];
+
 export default function App() {
   const [theme, setTheme] = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("summary");
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+
+      const sections = NAV_LINKS.map((link) =>
+        document.getElementById(link.id),
+      );
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        if (
+          section &&
+          section.offsetTop <= scrollPosition &&
+          section.offsetTop + section.offsetHeight > scrollPosition
+        ) {
+          setActiveSection(section.id);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const sortedRecords = useMemo(() => {
     return [...RECORDS_RAW].sort(
@@ -374,6 +430,42 @@ export default function App() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className="app-shell">
+        <div className="topbar">
+          <div className="topbar-inner">
+            <div className="brand">
+              <span
+                className="brand-mark skeleton"
+                style={{ width: 34, height: 34 }}
+              />
+              <span
+                className="skeleton"
+                style={{ width: 150, height: 20, borderRadius: 4 }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="container" style={{ paddingTop: 40 }}>
+          <div className="stat-grid">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="stat-card skeleton"
+                style={{ height: 180 }}
+              />
+            ))}
+          </div>
+          <div
+            className="chart-panel skeleton"
+            style={{ height: 300, marginTop: 32 }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app-shell">
       <div className="topbar">
@@ -384,16 +476,54 @@ export default function App() {
             </span>
             Blood Donation Tracker
           </div>
-          <button
-            className="theme-toggle"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            {theme === "dark" ? <Sun /> : <Moon />}
-            <span className="sr-only">
-              {theme === "dark" ? "Light" : "Dark"}
-            </span>
-          </button>
+
+          <nav className="desktop-nav">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className={`nav-link ${
+                  activeSection === link.id ? "active" : ""
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+
+          <div className="topbar-actions">
+            <button
+              className="theme-toggle"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label={`Switch to ${
+                theme === "dark" ? "light" : "dark"
+              } mode`}
+            >
+              {theme === "dark" ? <Sun /> : <Moon />}
+            </button>
+
+            <button
+              className="mobile-menu-btn"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        <div className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
+          {NAV_LINKS.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className={`mobile-nav-link ${
+                activeSection === link.id ? "active" : ""
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -462,7 +592,7 @@ export default function App() {
       </div>
 
       <div className="container">
-        <section className="block">
+        <section id="summary" className="block">
           <div className="section-head">
             <h2>Donation Summary</h2>
             <span className="section-note">
@@ -509,7 +639,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="block">
+        <section id="trend" className="block">
           <div className="section-head">
             <h2>Haemoglobin Trend</h2>
             <span className="section-note">
@@ -544,7 +674,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="block">
+        <section id="analytics" className="block">
           <div className="section-head">
             <h2>Donor Analytics</h2>
             <span className="section-note">Patterns & Predictions</span>
@@ -592,7 +722,7 @@ export default function App() {
           <YearlyChart data={yearlyStats} />
         </section>
 
-        <section className="block">
+        <section id="rhythm" className="block">
           <div className="section-head">
             <h2>Donation Rhythm</h2>
             <span className="section-note">Hover a marker for details</span>
@@ -624,7 +754,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="block">
+        <section id="record" className="block">
           <div className="section-head">
             <h2>Full Record</h2>
             <span className="section-note">{stats.total} entries</span>
@@ -650,7 +780,9 @@ export default function App() {
                       <td>{r.place}</td>
                       <td>
                         <span
-                          className={`status-pill ${r.hb >= stats.average ? "high" : "low"}`}
+                          className={`status-pill ${
+                            r.hb >= stats.average ? "high" : "low"
+                          }`}
                         >
                           {r.hb >= stats.average ? "Above avg" : "Below avg"}
                         </span>
@@ -670,6 +802,14 @@ export default function App() {
           <span>Built with React &amp; Vite</span>
         </footer>
       </div>
+
+      <button
+        className={`back-to-top ${showBackToTop ? "visible" : ""}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        <ArrowUp size={20} />
+      </button>
     </div>
   );
 }
