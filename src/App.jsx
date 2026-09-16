@@ -29,7 +29,7 @@ import {
   Menu,
   X,
   ArrowUp,
-} from "lucide-react";
+} from "./Icons.jsx";
 
 const DONOR = {
   name: "Saran Raj Saravanan",
@@ -799,7 +799,10 @@ export default function App() {
           <span>
             Data source: {DONOR.hospital}, {DONOR.place}
           </span>
-          <span>Built with React &amp; Vite</span>
+          <span>
+            Built with React &amp; Vite © {new Date().getFullYear()} Saran Raj
+            Saravanan
+          </span>
         </footer>
       </div>
 

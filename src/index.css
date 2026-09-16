@@ -20,6 +20,13 @@
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --teal-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--teal) 85%, white) 0%,
+    var(--teal) 55%,
+    color-mix(in srgb, var(--teal) 78%, black) 100%
+  );
 }
 
 :root,
@@ -45,6 +52,7 @@
   --teal: #2ad8c4;
   --teal-strong: #7cf0e1;
   --teal-soft: rgba(42, 216, 196, 0.1);
+  --teal-contrast: #04211c;
   --grid-line: rgba(233, 237, 245, 0.05);
 }
 
@@ -70,6 +78,7 @@
   --teal: #0e9587;
   --teal-strong: #087b70;
   --teal-soft: rgba(14, 149, 135, 0.08);
+  --teal-contrast: #ffffff;
   --grid-line: rgba(11, 31, 58, 0.05);
 }
 
@@ -186,13 +195,13 @@ p {
 .brand-mark {
   width: 34px;
   height: 34px;
-  border-radius: 11px;
+  border-radius: 8px;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--teal) 0%, var(--amber) 100%);
-  color: #08111f;
+  background: var(--teal-gradient);
+  border: 1px solid var(--teal);
+  color: var(--teal-contrast);
   flex-shrink: 0;
-  box-shadow: var(--shadow-glow-teal);
   transition: transform var(--transition-bounce);
 }
 
@@ -203,39 +212,33 @@ p {
 .theme-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-  color: var(--text);
-  padding: 9px 16px 9px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--teal);
+  background: var(--teal-gradient);
+  color: var(--teal-contrast);
   cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  transition: all var(--transition);
-  backdrop-filter: blur(10px);
+  transition: none;
 }
 
 .theme-toggle:hover {
+  transform: none;
   border-color: var(--teal);
-  background: var(--teal-soft);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  background: var(--teal-gradient);
+  color: var(--teal-contrast);
+  box-shadow: none;
 }
 
 .theme-toggle:active {
-  transform: translateY(0) scale(0.97);
+  transform: none;
 }
 
 .theme-toggle svg {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--transition);
-}
-
-.theme-toggle:hover svg {
-  transform: rotate(15deg);
+  width: 20px;
+  height: 20px;
 }
 
 .desktop-nav {
@@ -281,23 +284,32 @@ p {
 
 .mobile-menu-btn {
   display: none;
-  background: transparent;
-  border: none;
-  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--teal);
+  background: var(--teal-gradient);
+  color: var(--teal-contrast);
   cursor: pointer;
-  padding: 8px;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition);
+  transition: none;
 }
 
 @media (max-width: 768px) {
   .mobile-menu-btn {
-    display: block;
+    display: inline-flex;
   }
 }
 
 .mobile-menu-btn:hover {
-  background: var(--surface-glass);
+  background: var(--teal-gradient);
+}
+
+.mobile-menu-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .mobile-nav {
@@ -1056,13 +1068,13 @@ footer {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--teal);
-  color: #08111f;
-  border: none;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  color: var(--teal);
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   transform: translateY(100px);
   opacity: 0;
   transition: all var(--transition-bounce);
@@ -1070,13 +1082,20 @@ footer {
 }
 
 .back-to-top:hover {
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: var(--shadow-glow-teal);
+  background: var(--teal);
+  color: var(--teal-contrast);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px var(--teal-soft);
 }
 
 .back-to-top.visible {
   transform: translateY(0);
   opacity: 1;
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 860px) {
