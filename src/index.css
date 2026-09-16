@@ -1152,9 +1152,9 @@ footer {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 
   .pulse-path {
@@ -1166,6 +1166,170 @@ footer {
   outline: 2px solid var(--teal);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+.yearly-chart-title {
+  margin: 0 0 20px;
+  font-size: 18px;
+}
+
+.linkedin-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.legend-swatch.teal {
+  background: var(--teal);
+}
+
+.legend-swatch.amber {
+  background: var(--amber);
+  opacity: 0.8;
+}
+
+.legend-dot.threshold {
+  background: #e0603f;
+}
+
+.analytics-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 32px;
+}
+
+.next-donation-value {
+  font-size: 20px;
+}
+
+.skeleton-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.skeleton-brand-name {
+  width: 150px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.skeleton-theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+}
+
+.hero-content-skeleton {
+  width: 100%;
+}
+
+.skeleton-eyebrow {
+  width: 120px;
+  height: 24px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.skeleton-hero-title {
+  width: 80%;
+  height: 48px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.skeleton-hero-title-short {
+  width: 60%;
+  height: 48px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.hero-meta-skeleton {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skeleton-meta-item {
+  width: 140px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.skeleton-meta-item-wide {
+  width: 160px;
+}
+
+.skeleton-meta-item-long {
+  width: 180px;
+}
+
+.skeleton-hero-figure {
+  width: 100%;
+  height: 280px;
+  border-radius: 32px;
+}
+
+.loader-container {
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.skeleton-section-heading {
+  width: 200px;
+  height: 32px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.skeleton-stat-card {
+  height: 180px;
+  border-radius: 24px;
+}
+
+.skeleton-section-space {
+  margin-top: 64px;
+}
+
+.skeleton-chart-panel {
+  height: 350px;
+  border-radius: 32px;
+}
+
+.skeleton-yearly-chart {
+  height: 300px;
+  border-radius: 32px;
+  margin-top: 32px;
+}
+
+.skeleton-rhythm-panel {
+  height: 220px;
+  border-radius: 32px;
+}
+
+.skeleton-record-panel {
+  height: 420px;
+  border-radius: 32px;
+}
+
+@media (max-width: 860px) {
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .analytics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .skeleton-hero-title {
+    width: 90%;
+  }
+
+  .skeleton-hero-title-short {
+    width: 70%;
+  }
 }
 
 @keyframes shimmer {

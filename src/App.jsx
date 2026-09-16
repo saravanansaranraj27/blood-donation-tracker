@@ -229,9 +229,7 @@ const HbChart = React.memo(({ records, stats }) => {
 const YearlyChart = React.memo(({ data }) => {
   return (
     <div className="chart-panel">
-      <h3 style={{ marginBottom: "20px", fontSize: "18px", marginTop: 0 }}>
-        Annual Donation Frequency
-      </h3>
+      <h3 className="yearly-chart-title">Annual Donation Frequency</h3>
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data}>
           <XAxis
@@ -290,118 +288,60 @@ const PageLoader = () => (
     <div className="topbar">
       <div className="topbar-inner">
         <div className="brand">
-          <span
-            className="skeleton"
-            style={{ width: 34, height: 34, borderRadius: 8 }}
-          />
-          <span
-            className="skeleton"
-            style={{ width: 150, height: 20, borderRadius: 4 }}
-          />
+          <span className="skeleton skeleton-brand-mark" />
+          <span className="skeleton skeleton-brand-name" />
         </div>
-        <div
-          className="skeleton"
-          style={{ width: 42, height: 42, borderRadius: 8 }}
-        />
+        <div className="skeleton skeleton-theme-toggle" />
       </div>
     </div>
 
     <div className="hero">
       <div className="hero-inner">
         <div className="hero-content-skeleton">
-          <div
-            className="skeleton"
-            style={{
-              width: 120,
-              height: 24,
-              borderRadius: 12,
-              marginBottom: 16,
-            }}
-          />
-          <div
-            className="skeleton"
-            style={{
-              width: "80%",
-              height: 48,
-              borderRadius: 8,
-              marginBottom: 12,
-            }}
-          />
-          <div
-            className="skeleton"
-            style={{
-              width: "60%",
-              height: 48,
-              borderRadius: 8,
-              marginBottom: 24,
-            }}
-          />
+          <div className="skeleton skeleton-eyebrow" />
+          <div className="skeleton skeleton-hero-title" />
+          <div className="skeleton skeleton-hero-title-short" />
           <div className="hero-meta-skeleton">
-            <div
-              className="skeleton"
-              style={{ width: 140, height: 36, borderRadius: 8 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: 160, height: 36, borderRadius: 8 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: 180, height: 36, borderRadius: 8 }}
-            />
+            <div className="skeleton skeleton-meta-item" />
+            <div className="skeleton skeleton-meta-item skeleton-meta-item-wide" />
+            <div className="skeleton skeleton-meta-item skeleton-meta-item-long" />
           </div>
         </div>
-        <div
-          className="skeleton"
-          style={{ width: "100%", height: 280, borderRadius: 32 }}
-        />
+        <div className="skeleton skeleton-hero-figure" />
       </div>
     </div>
 
-    <div className="container" style={{ paddingTop: 40 }}>
-      <div
-        className="skeleton"
-        style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
-      />
+    <div className="container loader-container">
+      <div className="skeleton skeleton-section-heading" />
       <div className="stat-grid">
         {[1, 2, 3, 4].map((i) => (
-          <div
-            key={i}
-            className="skeleton"
-            style={{ height: 180, borderRadius: 24 }}
-          />
+          <div key={i} className="skeleton skeleton-stat-card" />
         ))}
       </div>
 
-      <div style={{ marginTop: 64 }}>
-        <div
-          className="skeleton"
-          style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
-        />
-        <div className="skeleton" style={{ height: 350, borderRadius: 32 }} />
+      <div className="skeleton-section-space">
+        <div className="skeleton skeleton-section-heading" />
+        <div className="skeleton skeleton-chart-panel" />
       </div>
 
-      <div style={{ marginTop: 64 }}>
-        <div
-          className="skeleton"
-          style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
-        />
-        <div
-          className="stat-grid"
-          style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
-        >
+      <div className="skeleton-section-space">
+        <div className="skeleton skeleton-section-heading" />
+        <div className="stat-grid analytics-grid">
           {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="skeleton"
-              style={{ height: 180, borderRadius: 24 }}
-            />
+            <div key={i} className="skeleton skeleton-stat-card" />
           ))}
         </div>
-        <div
-          className="skeleton"
-          style={{ height: 300, borderRadius: 32, marginTop: 32 }}
-        />
+        <div className="skeleton skeleton-yearly-chart" />
+      </div>
+
+      <div className="skeleton-section-space">
+        <div className="skeleton skeleton-section-heading" />
+        <div className="skeleton skeleton-rhythm-panel" />
+      </div>
+
+      <div className="skeleton-section-space">
+        <div className="skeleton skeleton-section-heading" />
+        <div className="skeleton skeleton-record-panel" />
       </div>
     </div>
   </div>
@@ -652,7 +592,7 @@ export default function App() {
                 href="https://www.linkedin.com/in/saran-raj-saravanan/"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "inherit" }}
+                className="linkedin-link"
               >
                 <div>
                   <Linkedin /> Connect on LinkedIn
@@ -739,25 +679,14 @@ export default function App() {
           <div className="chart-panel">
             <div className="chart-legend">
               <div className="legend-item">
-                <span
-                  className="legend-swatch"
-                  style={{ background: "var(--teal)" }}
-                />{" "}
-                Haemoglobin level
+                <span className="legend-swatch teal" /> Haemoglobin level
               </div>
               <div className="legend-item">
-                <span
-                  className="legend-swatch"
-                  style={{ background: "var(--amber)", opacity: 0.8 }}
-                />{" "}
-                Personal average
+                <span className="legend-swatch amber" /> Personal average
               </div>
               <div className="legend-item">
-                <span
-                  className="legend-dot"
-                  style={{ background: "#E0603F", borderRadius: "50%" }}
-                />{" "}
-                Eligibility threshold (≥ 12.5 g/dl)
+                <span className="legend-dot threshold" /> Eligibility threshold
+                (≥ 12.5 g/dl)
               </div>
             </div>
             <HbChart records={sortedRecords} stats={stats} />
@@ -770,13 +699,7 @@ export default function App() {
             <span className="section-note">Patterns & Predictions</span>
           </div>
 
-          <div
-            className="stat-grid"
-            style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              marginBottom: "32px",
-            }}
-          >
+          <div className="stat-grid analytics-grid">
             <div className="stat-card">
               <div className="stat-icon teal">{consistencyData.icon}</div>
               <div className="stat-value">{consistencyData.status}</div>
@@ -795,7 +718,7 @@ export default function App() {
               <div className="stat-icon amber">
                 <Calendar />
               </div>
-              <div className="stat-value" style={{ fontSize: "20px" }}>
+              <div className="stat-value next-donation-value">
                 {nextDonationDate
                   ? nextDonationDate.toLocaleDateString("en-GB", {
                       day: "numeric",
