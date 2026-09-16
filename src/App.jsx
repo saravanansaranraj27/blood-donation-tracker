@@ -415,7 +415,7 @@ export default function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
