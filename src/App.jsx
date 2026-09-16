@@ -437,8 +437,8 @@ export default function App() {
           <div className="topbar-inner">
             <div className="brand">
               <span
-                className="brand-mark skeleton"
-                style={{ width: 34, height: 34 }}
+                className="skeleton"
+                style={{ width: 34, height: 34, borderRadius: 8 }}
               />
               <span
                 className="skeleton"
