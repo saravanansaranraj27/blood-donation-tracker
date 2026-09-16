@@ -285,6 +285,128 @@ const NAV_LINKS = [
   { id: "record", label: "Record" },
 ];
 
+const PageLoader = () => (
+  <div className="app-shell">
+    <div className="topbar">
+      <div className="topbar-inner">
+        <div className="brand">
+          <span
+            className="skeleton"
+            style={{ width: 34, height: 34, borderRadius: 8 }}
+          />
+          <span
+            className="skeleton"
+            style={{ width: 150, height: 20, borderRadius: 4 }}
+          />
+        </div>
+        <div
+          className="skeleton"
+          style={{ width: 42, height: 42, borderRadius: 8 }}
+        />
+      </div>
+    </div>
+
+    <div className="hero">
+      <div className="hero-inner">
+        <div className="hero-content-skeleton">
+          <div
+            className="skeleton"
+            style={{
+              width: 120,
+              height: 24,
+              borderRadius: 12,
+              marginBottom: 16,
+            }}
+          />
+          <div
+            className="skeleton"
+            style={{
+              width: "80%",
+              height: 48,
+              borderRadius: 8,
+              marginBottom: 12,
+            }}
+          />
+          <div
+            className="skeleton"
+            style={{
+              width: "60%",
+              height: 48,
+              borderRadius: 8,
+              marginBottom: 24,
+            }}
+          />
+          <div className="hero-meta-skeleton">
+            <div
+              className="skeleton"
+              style={{ width: 140, height: 36, borderRadius: 8 }}
+            />
+            <div
+              className="skeleton"
+              style={{ width: 160, height: 36, borderRadius: 8 }}
+            />
+            <div
+              className="skeleton"
+              style={{ width: 180, height: 36, borderRadius: 8 }}
+            />
+          </div>
+        </div>
+        <div
+          className="skeleton"
+          style={{ width: "100%", height: 280, borderRadius: 32 }}
+        />
+      </div>
+    </div>
+
+    <div className="container" style={{ paddingTop: 40 }}>
+      <div
+        className="skeleton"
+        style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
+      />
+      <div className="stat-grid">
+        {[1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            className="skeleton"
+            style={{ height: 180, borderRadius: 24 }}
+          />
+        ))}
+      </div>
+
+      <div style={{ marginTop: 64 }}>
+        <div
+          className="skeleton"
+          style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
+        />
+        <div className="skeleton" style={{ height: 350, borderRadius: 32 }} />
+      </div>
+
+      <div style={{ marginTop: 64 }}>
+        <div
+          className="skeleton"
+          style={{ width: 200, height: 32, borderRadius: 8, marginBottom: 24 }}
+        />
+        <div
+          className="stat-grid"
+          style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
+        >
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="skeleton"
+              style={{ height: 180, borderRadius: 24 }}
+            />
+          ))}
+        </div>
+        <div
+          className="skeleton"
+          style={{ height: 300, borderRadius: 32, marginTop: 32 }}
+        />
+      </div>
+    </div>
+  </div>
+);
+
 export default function App() {
   const [theme, setTheme] = useTheme();
   const [isLoading, setIsLoading] = useState(true);
@@ -431,39 +553,7 @@ export default function App() {
   }
 
   if (isLoading) {
-    return (
-      <div className="app-shell">
-        <div className="topbar">
-          <div className="topbar-inner">
-            <div className="brand">
-              <span
-                className="skeleton"
-                style={{ width: 34, height: 34, borderRadius: 8 }}
-              />
-              <span
-                className="skeleton"
-                style={{ width: 150, height: 20, borderRadius: 4 }}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="container" style={{ paddingTop: 40 }}>
-          <div className="stat-grid">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="stat-card skeleton"
-                style={{ height: 180 }}
-              />
-            ))}
-          </div>
-          <div
-            className="chart-panel skeleton"
-            style={{ height: 300, marginTop: 32 }}
-          />
-        </div>
-      </div>
-    );
+    return <PageLoader />;
   }
 
   return (
